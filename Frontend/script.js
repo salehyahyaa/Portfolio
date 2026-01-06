@@ -367,31 +367,128 @@ function setupMenuButton() {
   });
 }
 
+/**
+ * Luxury Custom Cursor System
+ * Smooth interpolation with easing and interactive scaling
+ */
+class LuxuryCursor {
+  constructor() {
+    this.cursor = document.getElementById('custom-cursor');
+    this.cursorDot = document.getElementById('cursor-dot');
+    this.isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    this.mouseX = 0;
+    this.mouseY = 0;
+    this.cursorX = 0;
+    this.cursorY = 0;
+    this.dotX = 0;
+    this.dotY = 0;
+    this.isHovering = false;
+    this.animationFrame = null;
+    
+    if (!this.isTouchDevice && this.cursor && this.cursorDot) {
+      this.init();
+    }
+  }
+
+  init() {
+    // Only initialize on non-touch devices
+    if (this.isTouchDevice) {
+      return;
+    }
+
+    // Show cursor elements
+    this.cursor.classList.add('active');
+    this.cursorDot.classList.add('active');
+
+    // Mouse move event
+    document.addEventListener('mousemove', (e) => {
+      this.mouseX = e.clientX;
+      this.mouseY = e.clientY;
+    }, { passive: true });
+
+    // Interactive elements
+    const interactiveElements = document.querySelectorAll(
+      'a, button, .btn, .icon, .menu-icon, .footer-icon, .hamburger-icon, .theme-toggle, input, textarea, select, [onclick]'
+    );
+
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        this.isHovering = true;
+        this.cursor.classList.add('hover');
+        this.cursorDot.classList.add('hover');
+      });
+
+      el.addEventListener('mouseleave', () => {
+        this.isHovering = false;
+        this.cursor.classList.remove('hover');
+        this.cursorDot.classList.remove('hover');
+      });
+    });
+
+    // Click animation
+    document.addEventListener('mousedown', () => {
+      this.cursor.classList.add('click');
+      this.cursorDot.classList.add('click');
+    });
+
+    document.addEventListener('mouseup', () => {
+      this.cursor.classList.remove('click');
+      this.cursorDot.classList.remove('click');
+    });
+
+    // Smooth interpolation animation
+    this.animate();
+  }
+
+  animate() {
+    // Smooth easing for outer cursor (slower, more delay) - ease-out effect
+    const cursorLerp = 0.12;
+    const dx = this.mouseX - this.cursorX;
+    const dy = this.mouseY - this.cursorY;
+    this.cursorX += dx * cursorLerp;
+    this.cursorY += dy * cursorLerp;
+
+    // Faster easing for inner dot (closer to real cursor) - ease-out effect
+    const dotLerp = 0.35;
+    const dotDx = this.mouseX - this.dotX;
+    const dotDy = this.mouseY - this.dotY;
+    this.dotX += dotDx * dotLerp;
+    this.dotY += dotDy * dotLerp;
+
+    // Apply transforms with will-change optimization
+    this.cursor.style.transform = `translate(${this.cursorX}px, ${this.cursorY}px) translate(-50%, -50%)`;
+    this.cursorDot.style.transform = `translate(${this.dotX}px, ${this.dotY}px) translate(-50%, -50%)`;
+
+    this.animationFrame = requestAnimationFrame(() => this.animate());
+  }
+
+  destroy() {
+    if (this.animationFrame) {
+      cancelAnimationFrame(this.animationFrame);
+    }
+  }
+}
+
 // Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', function() {
-    initializeTheme();
-    setupThemeButton();
-    setupMenuButton();
-  });
-} else {
-  // DOM is already loaded
+function initializeApp() {
   initializeTheme();
   setupThemeButton();
   setupMenuButton();
-}
-
-// Also initialize the PortfolioApp for event listeners (optional, for redundancy)
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    if (!window.portfolioApp) {
-      window.portfolioApp = new PortfolioApp();
-      window.portfolioApp.init();
-    }
-  });
-} else {
+  
+  // Initialize PortfolioApp
   if (!window.portfolioApp) {
     window.portfolioApp = new PortfolioApp();
     window.portfolioApp.init();
   }
+  
+  // Initialize luxury cursor
+  if (!window.luxuryCursor) {
+    window.luxuryCursor = new LuxuryCursor();
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+  initializeApp();
 }

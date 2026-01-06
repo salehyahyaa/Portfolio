@@ -70,6 +70,114 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Hide default cursor on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+  
+  /* Show custom cursor only on non-touch devices */
+  .custom-cursor,
+  .cursor-dot {
+    display: block;
+  }
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor,
+  .cursor-dot {
+    display: none !important;
+  }
+}
+
+/* Luxury Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--text-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.3s ease,
+              opacity 0.3s ease,
+              box-shadow 0.3s ease;
+  opacity: 0;
+  will-change: transform;
+  box-shadow: 0 0 0 0 rgba(212, 165, 116, 0);
+  background: transparent;
+}
+
+.custom-cursor.active {
+  opacity: 0.8;
+  box-shadow: 0 0 15px rgba(212, 165, 116, 0.2);
+}
+
+.custom-cursor.hover {
+  width: 36px;
+  height: 36px;
+  border-width: 1px;
+  background: rgba(212, 165, 116, 0.15);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 20px rgba(212, 165, 116, 0.4);
+}
+
+.custom-cursor.click {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+  box-shadow: 0 0 12px rgba(212, 165, 116, 0.3);
+}
+
+/* Cursor Dot - Inner dot that follows more closely */
+.cursor-dot {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: var(--text-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background 0.3s ease,
+              opacity 0.2s ease,
+              box-shadow 0.2s ease;
+  opacity: 0;
+  will-change: transform;
+  box-shadow: 0 0 8px rgba(212, 165, 116, 0.3);
+}
+
+.cursor-dot.active {
+  opacity: 0.9;
+}
+
+.cursor-dot.hover {
+  width: 5px;
+  height: 5px;
+  background: rgba(212, 165, 116, 0.9);
+  box-shadow: 0 0 12px rgba(212, 165, 116, 0.5);
+}
+
+.cursor-dot.click {
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 6px rgba(212, 165, 116, 0.4);
+}
+
+[data-theme="dark"] .custom-cursor {
+  border-color: var(--text-primary);
+}
+
+[data-theme="dark"] .cursor-dot {
+  background: var(--text-primary);
+}
+
 /* Prevent scrolling when menu is open */
 body.menu-open {
   overflow: hidden;
@@ -347,8 +455,7 @@ a {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 0;
   height: 3px;
   background: linear-gradient(135deg, #d4a574 0%, #c9b89a 50%, #b8a082 100%);
@@ -365,7 +472,7 @@ a {
 }
 
 .menu-links a:hover::after {
-  width: 80%;
+  width: 100%;
 }
 
 /* Social icons in hamburger menu - bottom right */
@@ -464,15 +571,6 @@ a {
 .hamburger-icon.open span:last-child {
   transform: rotate(-45deg) translate(10px, -5px);
   background-color: var(--text-primary);
-}
-
-.menu-links li {
-  list-style: none;
-}
-
-.menu-links.open {
-  max-height: 400px;
-  padding: 0.5rem 0;
 }
 
 

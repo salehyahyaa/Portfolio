@@ -1346,17 +1346,17 @@ section {
 }
 
 .education-details-container {
-  justify-content: center;
+  display: flex;
   flex-direction: column;
-  padding-top: 2rem;
+  gap: 1.5rem;
+  padding-top: 0;
   padding-bottom: 2rem;
+  margin-top: 8rem;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
   position: relative;
   z-index: 1;
-}
-
-.education-containers, 
-.education-details-container {
-  display: flex;
 }
 
 .education-pic {

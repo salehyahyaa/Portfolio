@@ -112,9 +112,15 @@ class MenuManager {
     
     if (!overlay || !icon) return;
     
+    // Save current scroll position
+    const scrollY = window.scrollY;
     overlay.classList.add('open');
     icon.classList.add('open');
+    this.body.classList.add('menu-open');
     this.body.style.overflow = 'hidden';
+    this.body.style.position = 'fixed';
+    this.body.style.width = '100%';
+    this.body.style.top = `-${scrollY}px`;
   }
 
   /**
@@ -124,9 +130,20 @@ class MenuManager {
     const overlay = this.getOverlay();
     const icon = this.getIcon();
     
+    // Restore scroll position
+    const scrollY = this.body.style.top;
     if (overlay) overlay.classList.remove('open');
     if (icon) icon.classList.remove('open');
+    this.body.classList.remove('menu-open');
     this.body.style.overflow = '';
+    this.body.style.position = '';
+    this.body.style.width = '';
+    this.body.style.height = '';
+    this.body.style.top = '';
+    
+    if (scrollY) {
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
   }
 
   /**
@@ -230,11 +247,21 @@ window.toggleMenu = function(e) {
   if (isOpen) {
     overlay.classList.remove('open');
     icon.classList.remove('open');
+    document.body.classList.remove('menu-open');
     document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.height = '';
   } else {
+    // Save current scroll position
+    const scrollY = window.scrollY;
     overlay.classList.add('open');
     icon.classList.add('open');
+    document.body.classList.add('menu-open');
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${scrollY}px`;
   }
   
   return false;
@@ -248,7 +275,19 @@ window.handleMenuLink = function(e) {
   
   if (overlay) overlay.classList.remove('open');
   if (icon) icon.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  
+  // Restore scroll position
+  const scrollY = document.body.style.top;
   document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.width = '';
+  document.body.style.height = '';
+  document.body.style.top = '';
+  
+  if (scrollY) {
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+  }
   
   // Allow default navigation to happen
   // The href will handle the navigation
@@ -307,6 +346,16 @@ function setupMenuButton() {
       }
     });
   }
+  
+  // Close menu on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const overlay = document.querySelector('.menu-overlay');
+      if (overlay && overlay.classList.contains('open')) {
+        window.toggleMenu(e);
+      }
+    }
+  });
   
   // Close menu when clicking menu links
   const menuLinks = document.querySelectorAll('.menu-links a');

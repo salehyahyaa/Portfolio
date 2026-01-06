@@ -70,6 +70,14 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Prevent scrolling when menu is open */
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 
 html {
   scroll-behavior: smooth;
@@ -221,25 +229,32 @@ a {
   border-radius: 2px;
 }
 
-/* Slide-out drawer overlay */
+/* Full-screen animated overlay - slides from top to bottom */
 .menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--bg-primary);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transform: translateY(-100%);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
+  overflow: hidden;
+  backdrop-filter: blur(0px);
 }
 
 .menu-overlay.open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transform: translateY(0);
+  backdrop-filter: blur(10px);
 }
 
 /* Full-screen overlay menu */
@@ -258,8 +273,9 @@ a {
   padding: 2rem;
   list-style: none;
   opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+  transform: translateY(-50px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s, 
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
   z-index: 1001;
 }
 
@@ -268,11 +284,50 @@ a {
   transform: translateY(0);
 }
 
+/* When closing, menu links slide up faster */
+.menu-overlay:not(.open) .menu-links {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s, 
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transform: translateY(-100px);
+}
+
 .menu-links li {
   list-style: none;
   width: 100%;
   max-width: 600px;
   text-align: center;
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-overlay.open .menu-links li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered entrance animation - items appear one at a time */
+.menu-overlay.open .menu-links li:nth-child(1) {
+  transition-delay: 0.5s;
+}
+
+.menu-overlay.open .menu-links li:nth-child(2) {
+  transition-delay: 0.9s;
+}
+
+.menu-overlay.open .menu-links li:nth-child(3) {
+  transition-delay: 1.3s;
+}
+
+.menu-overlay.open .menu-links li:nth-child(4) {
+  transition-delay: 1.7s;
+}
+
+/* Faster exit animation - items slide up quickly when closing */
+.menu-overlay:not(.open) .menu-links li {
+  transition-delay: 0s;
+  transform: translateY(30px);
 }
 
 .menu-links a {
@@ -311,6 +366,89 @@ a {
 
 .menu-links a:hover::after {
   width: 80%;
+}
+
+/* Social icons in hamburger menu - bottom right */
+.menu-socials {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  z-index: 1002;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-overlay.open .menu-socials {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 2.1s;
+}
+
+.menu-icon {
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  object-fit: contain;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  filter: brightness(0) saturate(100%);
+  opacity: 0.8;
+}
+
+/* LinkedIn icon - show original colors */
+.menu-icon[src*="linkdein"],
+.menu-icon[src*="linkedin"] {
+  filter: none;
+  opacity: 0.8;
+}
+
+.menu-icon:hover {
+  transform: scale(1.2);
+  opacity: 1;
+  filter: brightness(0) saturate(100%);
+}
+
+.menu-icon[src*="linkdein"]:hover,
+.menu-icon[src*="linkedin"]:hover {
+  filter: none;
+  opacity: 1;
+}
+
+[data-theme="dark"] .menu-icon {
+  filter: brightness(0) saturate(100%) invert(100%);
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .menu-icon[src*="linkdein"],
+[data-theme="dark"] .menu-icon[src*="linkedin"] {
+  filter: invert(100%);
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .menu-icon:hover {
+  filter: brightness(0) saturate(100%) invert(100%);
+  opacity: 1;
+}
+
+[data-theme="dark"] .menu-icon[src*="linkdein"]:hover,
+[data-theme="dark"] .menu-icon[src*="linkedin"]:hover {
+  filter: invert(100%);
+  opacity: 1;
+}
+
+/* Hide social icons when menu is closing */
+.menu-overlay:not(.open) .menu-socials {
+  transition-delay: 0s;
+  transform: translateX(50px);
 }
 
 /* Hamburger icon animation when menu is open */

@@ -59,6 +59,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -69,8 +70,27 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  scroll-snap-type: none;
+}
+
+/* Enhanced smooth scrolling with better performance */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  * {
+    scroll-behavior: smooth;
+  }
+  
+  /* Smooth scroll for all scrollable containers */
+  section {
+    scroll-margin-top: 100px;
+  }
 }
 
 p {
@@ -276,8 +296,12 @@ a {
   transform: translateX(-50%);
   width: 0;
   height: 3px;
-  background: linear-gradient(135deg, #0a6dd6 0%, #8113d5 100%);
+  background: linear-gradient(135deg, #d4a574 0%, #c9b89a 50%, #b8a082 100%);
   transition: width 0.3s ease;
+}
+
+[data-theme="dark"] .menu-links a::after {
+  background: linear-gradient(135deg, #e8d5c4 0%, #d4c4b0 50%, #c9b89a 100%);
 }
 
 .menu-links a:hover {
@@ -746,10 +770,10 @@ section {
 }
 
 /* Right side - dates */
-.experience-right {
+.experience-date-wrapper {
   flex-shrink: 0;
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   padding: 0;
   margin: 0;
   align-self: flex-start;
@@ -762,7 +786,6 @@ section {
   padding: 0;
   white-space: nowrap;
   line-height: 1.4;
-  vertical-align: baseline;
 }
 
 .experience-points {
@@ -1280,6 +1303,12 @@ footer {
   color: var(--text-secondary);
   font-size: 1.1rem;
   text-align: right;
+}
+
+
+/* Smooth scroll for anchor links */
+a[href^="#"] {
+  scroll-behavior: smooth;
 }
 
 .footer-credit strong {

@@ -45,8 +45,9 @@
     height: 300px;
   }
   
-  .experience-right {
+  .experience-date-wrapper {
     text-align: center;
+    justify-content: center;
   }
   
   .experience-details-container {

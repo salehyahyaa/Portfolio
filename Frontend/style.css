@@ -1,6 +1,6 @@
 /* GENERAL */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+/* Font changed to Cambria - system font, no import needed */
 
 /* CSS VARIABLES FOR THEMES */
 :root {
@@ -63,7 +63,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Cambria", "Georgia", "Times New Roman", serif;
   overflow-x: hidden;
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -439,7 +439,7 @@ a {
 }
 
 .menu-links a {
-  display: block;
+  display: inline-block;
   padding: 1.5rem 3rem;
   font-size: 2.5rem;
   font-weight: 600;

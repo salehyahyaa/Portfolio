@@ -21,9 +21,8 @@
     margin-left: 0;
   }
   
-  .about-line {
-    margin: 0 auto;
-    height: 300px;
+  .about-left {
+    display: none;
   }
   
   .about-right {
@@ -40,9 +39,8 @@
     margin-left: 0;
   }
   
-  .experience-line {
-    margin: 0 auto;
-    height: 300px;
+  .experience-left {
+    display: none;
   }
   
   .experience-date-wrapper {
@@ -60,9 +58,8 @@
     margin-left: 0;
   }
   
-  .education-line {
-    margin: 0 auto;
-    height: 300px;
+  .education-left {
+    display: none;
   }
   
   .education-right {
@@ -218,9 +215,8 @@
     text-align: center;
   }
   
-  .about-line {
-    height: 250px;
-    margin: 0 auto;
+  .about-left {
+    display: none;
   }
   
   #experience {
@@ -236,9 +232,8 @@
     padding-top: 2rem;
   }
   
-  .experience-line {
-    height: 250px;
-    margin: 0 auto;
+  .experience-left {
+    display: none;
   }
   
   .experience-card {
@@ -290,9 +285,8 @@
     padding-top: 2rem;
   }
   
-  .education-line {
-    height: 250px;
-    margin: 0 auto;
+  .education-left {
+    display: none;
   }
   
   .details-container {

@@ -26,7 +26,7 @@
   }
   
   .about-right {
-    text-align: center;
+    text-align: left;
   }
   
   #experience {
@@ -173,7 +173,7 @@
   }
   
   #about .about-description {
-    text-align: center;
+    text-align: left;
   }
   .btn-container {
     flex-direction: column;
@@ -306,7 +306,7 @@
   
   #about .about-description {
     font-size: 0.95rem;
-    text-align: center;
+    text-align: left;
     line-height: 1.7;
   }
   

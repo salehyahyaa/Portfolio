@@ -87,8 +87,7 @@
     height: 350px;
     margin: 0 auto;
   }
-  section,
-  .section-container {
+  section {
     height: fit-content;
   }
   section {
@@ -129,10 +128,6 @@
     gap: 1.25rem;
   }
   
-  .details-container {
-    max-width: 450px;
-    padding: 1.25rem;
-  }
   
   section {
     margin: 0 3%;
@@ -210,10 +205,6 @@
     gap: 2rem;
   }
   
-  .about-title {
-    font-size: 2.5rem;
-    text-align: center;
-  }
   
   .about-left {
     display: none;
@@ -254,6 +245,13 @@
   .experience-content h3 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Show mobile break on mobile */
+  .mobile-break {
+    display: block;
   }
   
   .experience-date {
@@ -289,21 +287,6 @@
     display: none;
   }
   
-  .details-container {
-    max-width: 100%;
-    width: 100%;
-    padding: 1.25rem 1rem;
-  }
-  
-  .education-logo {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .university-name {
-    font-size: 0.75rem;
-  }
-  
   #about .about-description {
     font-size: 0.95rem;
     text-align: left;
@@ -311,11 +294,9 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: normal;
+    white-space: normal;
   }
   
-  .text-container {
-    text-align: left;
-  }
   
   .menu-links a {
     font-size: 1.6rem;

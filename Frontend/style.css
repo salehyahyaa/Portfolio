@@ -1156,6 +1156,9 @@ section {
   background: transparent;
   border: none;
   box-shadow: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 #about .about-description:hover {

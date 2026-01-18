@@ -469,6 +469,60 @@ class LuxuryCursor {
   }
 }
 
+/**
+ * ScrollAnimationManager Class
+ * Handles scroll-triggered animations using Intersection Observer
+ */
+class ScrollAnimationManager {
+  constructor() {
+    this.observer = null;
+    this.observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+  }
+
+  init() {
+    // Check if Intersection Observer is supported
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: show all elements immediately
+      document.querySelectorAll('.scroll-animate').forEach(el => {
+        el.classList.add('animate');
+      });
+      return;
+    }
+
+    // Create Intersection Observer
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          // Unobserve after animation to improve performance
+          this.observer.unobserve(entry.target);
+        }
+      });
+    }, this.observerOptions);
+
+    // Observe all elements with scroll-animate class
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      this.observer.observe(el);
+    });
+
+    // Animate hero section immediately on page load (since it's already visible)
+    const heroElements = document.querySelectorAll('#profile .scroll-animate');
+    if (heroElements.length > 0) {
+      // Small delay to ensure smooth initial animation
+      setTimeout(() => {
+        heroElements.forEach((el, index) => {
+          setTimeout(() => {
+            el.classList.add('animate');
+          }, index * 100); // Stagger hero animations
+        });
+      }, 100);
+    }
+  }
+}
+
 // Initialize when DOM is ready
 function initializeApp() {
   initializeTheme();
@@ -484,6 +538,12 @@ function initializeApp() {
   // Initialize luxury cursor
   if (!window.luxuryCursor) {
     window.luxuryCursor = new LuxuryCursor();
+  }
+  
+  // Initialize scroll animations
+  if (!window.scrollAnimationManager) {
+    window.scrollAnimationManager = new ScrollAnimationManager();
+    window.scrollAnimationManager.init();
   }
 }
 

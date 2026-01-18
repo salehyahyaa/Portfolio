@@ -199,6 +199,11 @@
   
   #about .title {
     font-size: 2rem;
+    text-align: left;
+  }
+  
+  #about .section_text_p1 {
+    text-align: left;
   }
   
   .about-container {
@@ -216,6 +221,11 @@
   
   #experience .title {
     font-size: 2rem;
+    text-align: left;
+  }
+  
+  #experience .section_text_p1 {
+    text-align: left;
   }
   
   .experience-container {
@@ -249,6 +259,12 @@
     overflow-wrap: break-word;
   }
   
+  /* Keep company names in education section on one line */
+  #education .experience-content h3 .company-name {
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+  
   /* Show mobile break on mobile */
   .mobile-break {
     display: block;
@@ -276,6 +292,11 @@
   
   #education .title {
     font-size: 2rem;
+    text-align: left;
+  }
+  
+  #education .section_text_p1 {
+    text-align: left;
   }
   
   .education-container {

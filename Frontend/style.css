@@ -1433,10 +1433,13 @@ footer {
   height: 2rem;
   width: 2rem;
   object-fit: contain;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
+  transition: all 0.3s ease;
   filter: brightness(0) saturate(100%);
   opacity: 1;
-  transition: all 0.3s ease;
 }
 
 /* LinkedIn icon in footer - show original colors (already black) */

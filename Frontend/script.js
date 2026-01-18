@@ -545,6 +545,29 @@ function initializeApp() {
     window.scrollAnimationManager = new ScrollAnimationManager();
     window.scrollAnimationManager.init();
   }
+  
+  // Initialize concentration dropdown
+  initializeConcentrationDropdown();
+}
+
+/**
+ * Initialize concentration dropdown feature
+ * Allows users to click to expand/collapse the concentration information
+ */
+function initializeConcentrationDropdown() {
+  const concentrationToggle = document.getElementById('concentration-toggle');
+  if (!concentrationToggle) return;
+  
+  // Add click event listener
+  concentrationToggle.addEventListener('click', function() {
+    concentrationToggle.classList.toggle('expanded');
+  });
+  
+  // Also support touch events for mobile
+  concentrationToggle.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    concentrationToggle.classList.toggle('expanded');
+  });
 }
 
 if (document.readyState === 'loading') {

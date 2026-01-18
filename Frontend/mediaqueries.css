@@ -265,6 +265,12 @@
     font-size: 0.85rem;
   }
   
+  /* Keep education degree names on one line on mobile */
+  #education .experience-role {
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+  
   /* Show mobile break on mobile */
   .mobile-break {
     display: block;

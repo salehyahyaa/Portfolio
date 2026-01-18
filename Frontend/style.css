@@ -1018,6 +1018,18 @@ section {
   font-weight: bold;
 }
 
+.experience-role {
+  font-size: 0.95rem;
+  color: var(--text-quaternary);
+  margin: 0.3rem 0;
+  line-height: 1.4;
+}
+
+/* Keep education degree names on one line */
+#education .experience-role {
+  white-space: nowrap;
+}
+
 /* Right side - dates */
 .experience-date-wrapper {
   flex-shrink: 0;
@@ -1045,6 +1057,77 @@ section {
   line-height: 1.6;
   margin: 0;
 }
+
+/* Concentration Reveal with Pointer */
+.concentration-list-item {
+  list-style: none;
+  position: relative;
+  padding-left: 0;
+  margin-left: -1.2rem;
+}
+
+.concentration-toggle {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  gap: 0.5rem;
+}
+
+.pointer-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid var(--text-quaternary);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-right: 0.2rem;
+}
+
+[data-theme="dark"] .pointer-icon {
+  border-top-color: var(--text-quaternary);
+}
+
+.concentration-toggle.expanded .pointer-icon {
+  transform: rotate(180deg);
+}
+
+.concentration-content {
+  display: inline-block;
+  opacity: 0;
+  visibility: hidden;
+  max-width: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease, max-width 0.4s ease;
+  white-space: nowrap;
+  color: var(--text-quaternary);
+}
+
+.concentration-toggle.expanded .concentration-content {
+  opacity: 1;
+  visibility: visible;
+  max-width: 500px;
+}
+
+.concentration-toggle:hover .pointer-icon {
+  transform: scale(1.2);
+}
+
+.concentration-toggle.expanded:hover .pointer-icon {
+  transform: rotate(180deg) scale(1.2);
+}
+
+.concentration-toggle:active .pointer-icon {
+  transform: scale(0.9);
+}
+
+.concentration-toggle.expanded:active .pointer-icon {
+  transform: rotate(180deg) scale(0.9);
+}
+
 
 
 

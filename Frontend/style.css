@@ -60,6 +60,9 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Hide default cursor on non-touch devices */
@@ -202,6 +205,13 @@ html {
 
 p {
   color: var(--text-secondary);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  margin: 0 0 1rem 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
 }
 
 /*TRANSITION*/
@@ -672,10 +682,11 @@ section {
   text-align: left;
   color: var(--text-secondary);
   font-size: 0.9rem;
-  font-weight: 300;
-  letter-spacing: 3px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   margin-bottom: 1rem;
+  line-height: 1.5;
 }
 
 
@@ -684,11 +695,12 @@ section {
   text-align: left;
   color: var(--text-primary);
   transition: color 0.3s ease;
-  margin: 0;
-  line-height: 1.1;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
   font-weight: 400;
   font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
   text-transform: capitalize;
+  letter-spacing: -0.02em;
 }
 
 #socials-container {
@@ -994,10 +1006,12 @@ section {
 
 .experience-content h3 {
   font-size: 1.1rem;
-  margin: 0 0 0.3rem 0;
+  margin: 0 0 0.5rem 0;
   padding: 0;
   color: var(--text-tertiary);
-  line-height: 1.4;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  font-weight: 500;
 }
 
 /* Hide mobile break on desktop */
@@ -1037,16 +1051,18 @@ section {
   margin: 0;
   padding: 0;
   white-space: nowrap;
-  line-height: 1.4;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
 }
 
 .experience-points {
   list-style-type: disc;
-  padding-left: 1.2rem;
+  padding-left: 1.5rem;
   font-size: 0.95rem;
   color: var(--text-quaternary);
-  line-height: 1.6;
-  margin: 0;
+  line-height: 1.7;
+  margin: 0.5rem 0 0 0;
+  letter-spacing: 0.01em;
 }
 
 /* Concentration Reveal with Pointer */
@@ -1195,12 +1211,14 @@ section {
 #about .title {
   text-align: left;
   font-size: 3.5rem;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 #about .section_text_p1 {
   text-align: left;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 #experience .title,
@@ -1229,16 +1247,16 @@ section {
 .about-right {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   padding-top: 1rem;
 }
 
 #about .about-description {
   font-size: 1.15rem;
-  line-height: 1.9;
+  line-height: 1.8;
   color: var(--text-secondary);
   text-align: left;
-  margin: 0;
+  margin: 0 0 1rem 0;
   padding: 0;
   background: transparent;
   border: none;
@@ -1246,6 +1264,7 @@ section {
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: normal;
+  letter-spacing: 0.01em;
 }
 
 #about .about-description:hover {
@@ -1485,14 +1504,18 @@ footer {
 
 .footer-copyright {
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-align: center;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
 .footer-credit {
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-align: right;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
 

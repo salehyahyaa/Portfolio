@@ -10,7 +10,7 @@
 class ThemeManager {
   constructor() {
     this.themeKey = 'theme';
-    this.defaultTheme = 'light';
+    this.defaultTheme = 'dark';
     this.htmlElement = document.documentElement;
   }
 
@@ -33,7 +33,7 @@ class ThemeManager {
    */
   toggle() {
     if (!this.htmlElement) return;
-    const currentTheme = this.htmlElement.getAttribute('data-theme') || 'light';
+    const currentTheme = this.htmlElement.getAttribute('data-theme') || 'dark';
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     this.setTheme(newTheme);
     this.saveTheme(newTheme);
@@ -214,7 +214,7 @@ window.toggleTheme = function(e) {
   
   // Direct implementation - no need for app initialization
   const html = document.documentElement;
-  const currentTheme = html.getAttribute('data-theme') || 'light';
+  const currentTheme = html.getAttribute('data-theme') || 'dark';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   
   html.setAttribute('data-theme', newTheme);
@@ -295,7 +295,7 @@ window.handleMenuLink = function(e) {
 
 // Initialize theme on page load
 function initializeTheme() {
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  const savedTheme = localStorage.getItem('theme') || 'dark';
   const html = document.documentElement;
   html.setAttribute('data-theme', savedTheme);
   

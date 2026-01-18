@@ -7,7 +7,6 @@
   /* Light mode colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f9f9f9;
-  --bg-tertiary: #fafafa;
   --text-primary: #000000;
   --text-secondary: rgb(85, 85, 85);
   --text-tertiary: #111;
@@ -15,17 +14,13 @@
   --text-quinary: #666;
   --border-color: rgb(163, 163, 163);
   --border-light: rgba(0, 0, 0, 0.05);
-  --card-bg: #ffffff;
   --shadow-color: rgba(0, 0, 0, 0.12);
-  --nav-bg: #ffffff;
-  --menu-bg: #ffffff;
 }
 
 [data-theme="dark"] {
   /* Dark mode colors */
   --bg-primary: #000000;
   --bg-secondary: #000000;
-  --bg-tertiary: #000000;
   --text-primary: #ffffff;
   --text-secondary: #b0b0b0;
   --text-tertiary: #e0e0e0;
@@ -33,10 +28,7 @@
   --text-quinary: #a0a0a0;
   --border-color: #444444;
   --border-light: rgba(255, 255, 255, 0.1);
-  --card-bg: #000000;
   --shadow-color: rgba(0, 0, 0, 0.5);
-  --nav-bg: #000000;
-  --menu-bg: #000000;
 }
 
 [data-theme="dark"] #profile {
@@ -190,7 +182,6 @@ body.menu-open {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
-  scroll-snap-type: none;
 }
 
 /* Enhanced smooth scrolling with better performance */

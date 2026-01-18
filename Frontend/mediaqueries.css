@@ -253,10 +253,11 @@
   }
   
   .experience-content h3 {
-    font-size: 1rem;
+    font-size: 0.85rem;
     margin-bottom: 0.5rem;
-    word-break: break-word;
-    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   /* Keep company names in education section on one line */

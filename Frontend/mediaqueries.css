@@ -253,11 +253,21 @@
   }
   
   .experience-content h3 {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     margin-bottom: 0.5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+  }
+  
+  /* Show mobile break on mobile - allows line break after @ */
+  .experience-content h3 .mobile-break {
+    display: block;
+  }
+  
+  /* Company name appears on new line after @ */
+  .experience-content h3 .company-name {
+    display: inline;
   }
   
   /* Keep company names in education section on one line */
@@ -325,6 +335,25 @@
     white-space: normal;
   }
   
+  /* Concentration dropdown mobile adjustments */
+  .concentration-toggle {
+    gap: 0.3rem;
+  }
+  
+  .pointer-icon {
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 6px;
+  }
+  
+  .concentration-content {
+    max-width: 300px;
+    white-space: normal;
+  }
+  
+  .concentration-toggle.expanded .concentration-content {
+    max-width: 300px;
+  }
   
   .menu-links a {
     font-size: 1.6rem;

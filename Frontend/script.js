@@ -548,6 +548,41 @@ function initializeApp() {
   
   // Initialize concentration dropdown
   initializeConcentrationDropdown();
+  
+  // Initialize back to top button
+  initializeBackToTop();
+}
+
+/**
+ * Initialize Back to Top Button
+ * Shows button after scrolling 300px, smooth scroll to top
+ */
+function initializeBackToTop() {
+  const backToTopButton = document.getElementById('back-to-top');
+  if (!backToTopButton) return;
+  
+  // Show/hide button based on scroll position
+  function handleScroll() {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add('visible');
+    } else {
+      backToTopButton.classList.remove('visible');
+    }
+  }
+  
+  // Smooth scroll to top
+  backToTopButton.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // Listen for scroll events
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Check initial scroll position
+  handleScroll();
 }
 
 /**

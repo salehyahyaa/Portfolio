@@ -1575,6 +1575,83 @@ a[href^="#"] {
   transition-delay: 0.1s;
 }
 
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #d4a574 0%, #c9b89a 50%, #b8a082 100%);
+  border: 2px solid rgba(212, 165, 116, 0.3);
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(212, 165, 116, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .back-to-top {
+  background: linear-gradient(135deg, #e8d5c4 0%, #d4c4b0 50%, #c9b89a 100%);
+  border: 2px solid rgba(232, 213, 196, 0.3);
+  color: #000000;
+  box-shadow: 0 4px 20px rgba(232, 213, 196, 0.3);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(212, 165, 116, 0.5);
+  background: linear-gradient(135deg, #e0b080 0%, #d4a574 50%, #c9b89a 100%);
+}
+
+[data-theme="dark"] .back-to-top:hover {
+  background: linear-gradient(135deg, #f0e5d4 0%, #e8d5c4 50%, #d4c4b0 100%);
+  box-shadow: 0 8px 30px rgba(232, 213, 196, 0.5);
+}
+
+.back-to-top:active {
+  transform: translateY(-3px) scale(0.95);
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.back-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* Mobile adjustments for back to top button */
+@media screen and (max-width: 600px) {
+  .back-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .back-to-top svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 /* About description animation */
 .about-description.scroll-animate {
   transition-delay: 0s;

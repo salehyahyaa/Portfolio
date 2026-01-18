@@ -297,6 +297,11 @@
     padding-left: 1rem;
   }
   
+  /* Keep experience points on one line */
+  .experience-points li {
+    white-space: nowrap;
+  }
+  
   .company-logo {
     width: 40px;
     height: 40px;

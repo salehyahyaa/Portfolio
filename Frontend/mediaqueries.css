@@ -228,7 +228,8 @@
   }
   
   #experience {
-    padding: 3.5rem 1.5rem;
+    padding: 3.5rem 1rem;
+    box-sizing: border-box;
   }
   
   #experience .title {
@@ -246,10 +247,19 @@
   .experience-container {
     gap: 2rem;
     padding-top: 2rem;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
   }
   
   .experience-left {
     display: none;
+  }
+  
+  .experience-details-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   
   .experience-card {
@@ -261,22 +271,26 @@
     align-items: flex-start;
     text-align: left;
     border-radius: 0.75rem;
+    box-sizing: border-box;
+    overflow: visible;
   }
   
   .experience-content {
     width: 100%;
     text-align: left;
     padding-left: 3.5rem;
+    box-sizing: border-box;
+    min-width: 0;
   }
   
   .experience-content h3 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-bottom: 0.5rem;
     line-height: 1.4;
     font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   
   /* Hide mobile break on mobile - keep title on one line */
@@ -296,18 +310,20 @@
     margin-bottom: 0.5rem;
     padding-left: 3.5rem;
     width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
   }
   
-  /* Keep company names in education section on one line */
+  /* Keep company names in education section */
   #education .experience-content h3 .company-name {
-    white-space: nowrap;
     font-size: 0.85rem;
   }
   
   /* Keep education degree names on one line on mobile */
   #education .experience-role {
-    white-space: nowrap;
     font-size: 0.9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   /* Hide mobile break on mobile - keep titles on one line */
@@ -322,14 +338,22 @@
     margin-bottom: 0.5rem;
     padding-left: 3.5rem;
     width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
   }
   
   /* Education section titles should also stay on one line */
   #education .experience-content h3 {
-    font-size: 0.95rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Education section content */
+  #education .experience-content {
+    box-sizing: border-box;
+    min-width: 0;
   }
   
   .experience-date {
@@ -340,14 +364,15 @@
   .experience-points {
     font-size: 0.9rem;
     text-align: left;
-    padding-left: 1.25rem;
+    padding-left: 0;
     margin: 0;
     line-height: 1.6;
   }
   
   /* Keep experience points on one line */
   .experience-points li {
-    white-space: nowrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     margin-bottom: 0.25rem;
   }
   
@@ -364,7 +389,8 @@
   }
   
   #education {
-    padding: 3.5rem 1.5rem;
+    padding: 3.5rem 1rem;
+    box-sizing: border-box;
   }
   
   #education .title {
@@ -382,6 +408,15 @@
   .education-container {
     gap: 2rem;
     padding-top: 2rem;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .education-details-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   
   .education-left {
@@ -443,8 +478,9 @@
   
   section {
     margin: 0;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
   }
   
   .section_text_p1 {

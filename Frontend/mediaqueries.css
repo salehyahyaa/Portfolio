@@ -44,8 +44,10 @@
   }
   
   .experience-date-wrapper {
-    text-align: center;
-    justify-content: center;
+    text-align: left;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
   }
   
   .experience-details-container {
@@ -255,7 +257,7 @@
     max-width: 100%;
     padding: 1.5rem;
     gap: 1.25rem;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     text-align: left;
     border-radius: 0.75rem;
@@ -268,22 +270,32 @@
   }
   
   .experience-content h3 {
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: 0.5rem;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    line-height: 1.5;
+    line-height: 1.4;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
-  /* Show mobile break on mobile - allows line break after @ */
+  /* Hide mobile break on mobile - keep title on one line */
   .experience-content h3 .mobile-break {
-    display: block;
+    display: none;
   }
   
-  /* Company name appears on new line after @ */
+  /* Company name stays inline */
   .experience-content h3 .company-name {
     display: inline;
+  }
+  
+  /* Date wrapper positioned at top, aligned with text content */
+  .experience-date-wrapper {
+    order: -1;
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+    padding-left: 3.5rem;
+    width: 100%;
   }
   
   /* Keep company names in education section on one line */
@@ -298,9 +310,26 @@
     font-size: 0.9rem;
   }
   
-  /* Show mobile break on mobile */
+  /* Hide mobile break on mobile - keep titles on one line */
   .mobile-break {
-    display: block;
+    display: none;
+  }
+  
+  /* Education section also needs dates at top, aligned with text content */
+  #education .experience-date-wrapper {
+    order: -1;
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+    padding-left: 3.5rem;
+    width: 100%;
+  }
+  
+  /* Education section titles should also stay on one line */
+  #education .experience-content h3 {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .experience-date {

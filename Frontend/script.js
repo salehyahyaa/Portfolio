@@ -269,6 +269,12 @@ window.toggleMenu = function(e) {
 
 // Handle menu link clicks - navigate and close menu
 window.handleMenuLink = function(e) {
+  const link = e.target.closest('a');
+  if (!link) return;
+  
+  const targetId = link.getAttribute('href');
+  if (!targetId || !targetId.startsWith('#')) return;
+  
   // Close the menu first
   const overlay = document.querySelector('.menu-overlay');
   const icon = document.querySelector('.hamburger-icon');
@@ -289,8 +295,16 @@ window.handleMenuLink = function(e) {
     window.scrollTo(0, parseInt(scrollY || '0') * -1);
   }
   
-  // Allow default navigation to happen
-  // The href will handle the navigation
+  // Navigate to target section with smooth scroll
+  setTimeout(() => {
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 100);
+  
+  e.preventDefault();
+  return false;
 };
 
 // Initialize theme on page load

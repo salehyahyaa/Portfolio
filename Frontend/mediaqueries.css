@@ -394,6 +394,22 @@
     box-sizing: border-box;
   }
   
+  /* Match Experience sizing/flow: prevent Education overflow on mobile */
+  #education .education-right,
+  #education .education-details-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    text-align: left;
+  }
+
+  #education .experience-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   #education .title {
     font-size: 2.25rem;
     text-align: left;

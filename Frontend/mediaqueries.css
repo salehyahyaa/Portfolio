@@ -324,6 +324,7 @@
     font-size: 0.9rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    white-space: normal;
   }
   
   /* Hide mobile break on mobile - keep titles on one line */

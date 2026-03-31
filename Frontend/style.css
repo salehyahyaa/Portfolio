@@ -1144,12 +1144,11 @@ section {
 /* ABOUT ME SECTION */
 #about {
   position: relative;
-  min-height: auto;
   padding-top: 4vh;
   padding-left: 2rem;
   padding-right: 2rem;
   box-sizing: border-box;
-  min-height: fit-content;
+  min-height: 100vh;
   /* Smooth color transition from hero section */
   background: linear-gradient(135deg, 
     #e8e8e8 0%, 
@@ -1210,8 +1209,8 @@ section {
 
 #about .title {
   text-align: left;
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
@@ -1252,7 +1251,7 @@ section {
 }
 
 #about .about-description {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   line-height: 1.8;
   color: var(--text-secondary);
   text-align: left;

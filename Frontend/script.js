@@ -307,6 +307,77 @@ window.handleMenuLink = function(e) {
   return false;
 };
 
+// Copy email to clipboard (used by email icons)
+const PORTFOLIO_EMAIL = 'salehyahya10.20@gmail.com';
+
+async function copyTextToClipboard(text) {
+  // Modern async clipboard API (requires secure context)
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+    await navigator.clipboard.writeText(text);
+    return true;
+  }
+
+  // Fallback for older browsers / non-secure contexts
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.top = '-1000px';
+  textarea.style.left = '-1000px';
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+
+  let ok = false;
+  try {
+    ok = document.execCommand('copy');
+  } catch {
+    ok = false;
+  } finally {
+    document.body.removeChild(textarea);
+  }
+
+  return ok;
+}
+
+function playEmailCopiedAnimation(el, ok) {
+  if (!el || !(el instanceof Element)) return;
+
+  const label = ok ? 'Email copied' : 'Copy failed';
+  el.setAttribute('data-copy-status', label);
+
+  // Restart animation
+  el.classList.remove('copied');
+  // Force reflow so the animation restarts reliably
+  void el.offsetWidth;
+  el.classList.add('copied');
+
+  window.clearTimeout(el.__copyStatusTimer);
+  el.__copyStatusTimer = window.setTimeout(() => {
+    el.classList.remove('copied');
+    el.removeAttribute('data-copy-status');
+  }, ok ? 1400 : 1700);
+}
+
+// Global for inline onclick handlers in index.html
+window.copyEmail = async function(e) {
+  if (e) {
+    e.preventDefault();
+  }
+
+  const target = e?.currentTarget || e?.target;
+
+  let ok = false;
+  try {
+    ok = await copyTextToClipboard(PORTFOLIO_EMAIL);
+  } catch {
+    ok = false;
+  }
+
+  playEmailCopiedAnimation(target, ok);
+  return false;
+};
+
 // Initialize theme on page load
 function initializeTheme() {
   const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -347,6 +418,17 @@ function setupMenuButton() {
       return false;
     });
   }
+
+  // Keyboard support for icon-like email buttons
+  document.querySelectorAll('.email-copy').forEach(el => {
+    el.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Enter' || evt.key === ' ') {
+        evt.preventDefault();
+        evt.stopPropagation();
+        window.copyEmail({ currentTarget: el, target: el, preventDefault() {}, stopPropagation() {} });
+      }
+    });
+  });
   
   const menuOverlay = document.querySelector('.menu-overlay');
   if (menuOverlay) {

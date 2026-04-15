@@ -40,12 +40,19 @@
             <li><a href = "#profile" onclick="handleMenuLink(event);">Contact</a></li>
             </div>
             <div class="menu-socials" onclick="event.stopPropagation()">
-              <img 
-                src = "./images/email.png" 
-                alt="Email"
-                class= "menu-icon" 
-                onclick= "location.href ='https://mail.google.com/mail/u/0/?view=cm&to=salehyahya10.20@gmail.com'"
-              />
+              <span
+                class="email-copy"
+                role="button"
+                tabindex="0"
+                aria-label="Copy email address"
+                onclick="copyEmail(event); return false;"
+              >
+                <img 
+                  src = "./images/email.png" 
+                  alt="Email"
+                  class= "menu-icon"
+                />
+              </span>
               <img 
                 src = "./images/linkdein.png" 
                 alt="Linkedin profile"
@@ -79,12 +86,19 @@
           </div>
 
           <div id = "socials-container" class="scroll-animate">
-            <img 
-              src = "./images/email.png" 
-              alt="Email"
-              class= "icon" 
-              onclick= "location.href ='https://mail.google.com/mail/u/0/?view=cm&to=salehyahya10.20@gmail.com'"
-            />
+            <span
+              class="email-copy"
+              role="button"
+              tabindex="0"
+              aria-label="Copy email address"
+              onclick="copyEmail(event); return false;"
+            >
+              <img 
+                src = "./images/email.png" 
+                alt="Email"
+                class= "icon"
+              />
+            </span>
             <img 
               src = "./images/linkdein.png" 
               alt="Linkedin profile"
@@ -269,13 +283,20 @@
     <footer>
       <div class="footer-container">
         <div class="footer-socials">
-          <img 
-            src = "./images/email.png" 
-            alt="Email"
-            class= "footer-icon" 
-            onclick= "location.href ='https://mail.google.com/mail/u/0/?view=cm&to=salehyahya10.20@gmail.com'"
-            loading="lazy"
-          />
+          <span
+            class="email-copy"
+            role="button"
+            tabindex="0"
+            aria-label="Copy email address"
+            onclick="copyEmail(event); return false;"
+          >
+            <img 
+              src = "./images/email.png" 
+              alt="Email"
+              class= "footer-icon"
+              loading="lazy"
+            />
+          </span>
             <img 
               src = "./images/linkdein.png" 
               alt="Linkedin profile"

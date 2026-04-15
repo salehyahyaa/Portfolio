@@ -1479,6 +1479,87 @@ footer {
   opacity: 0.8;
 }
 
+.email-copy {
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.email-copy:focus-visible {
+  outline: 2px solid rgba(212, 165, 116, 0.85);
+  outline-offset: 6px;
+}
+
+/* Copy feedback: icon pop + tooltip */
+.email-copy.copied {
+  animation: emailCopyPop 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Keep hover behavior; only suppress it during the copied animation */
+.email-copy.copied > img.icon:hover,
+.email-copy.copied > img.menu-icon:hover,
+.email-copy.copied > img.footer-icon:hover {
+  transform: none;
+}
+
+.email-copy.copied::after {
+  content: "✓ " attr(data-copy-status);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%);
+  padding: 0.4rem 0.65rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  animation: emailTooltipIn 1400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+  z-index: 5;
+}
+
+[data-theme="dark"] .email-copy.copied::after {
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+@keyframes emailCopyPop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.12); }
+  70% { transform: scale(0.995); }
+  100% { transform: scale(1); }
+}
+
+@keyframes emailTooltipIn {
+  0% { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  18% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  78% { opacity: 1; transform: translateX(-50%) translateY(-1px); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .email-copy.copied {
+    animation: none;
+  }
+  .email-copy.copied::after {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 [data-theme="dark"] .footer-icon {
   filter: brightness(0) saturate(100%) invert(100%);
   opacity: 1;

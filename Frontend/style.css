@@ -15,6 +15,15 @@
   --border-color: rgb(163, 163, 163);
   --border-light: rgba(0, 0, 0, 0.05);
   --shadow-color: rgba(0, 0, 0, 0.12);
+  /* Theme crossfade (light ↔ dark) */
+  --theme-fade-duration: 0.55s;
+  --theme-fade-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --theme-fade-duration: 0.12s;
+  }
 }
 
 [data-theme="dark"] {
@@ -54,15 +63,66 @@
   scroll-behavior: smooth;
 }
 
+html {
+  transition:
+    background-color var(--theme-fade-duration) var(--theme-fade-ease),
+    color var(--theme-fade-duration) var(--theme-fade-ease);
+}
+
 body {
   font-family: "Cambria", "Georgia", "Times New Roman", serif;
   overflow-x: hidden;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color var(--theme-fade-duration) var(--theme-fade-ease),
+    color var(--theme-fade-duration) var(--theme-fade-ease);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* Smooth theme handoff for text and borders that use CSS variables */
+p,
+a,
+li,
+.section_text_p1,
+.title,
+.footer-copyright,
+.footer-credit,
+.experience-date,
+.experience-points,
+.experience-role,
+.experience-content h3,
+.btn-color-2 {
+  transition:
+    color var(--theme-fade-duration) var(--theme-fade-ease),
+    border-color var(--theme-fade-duration) var(--theme-fade-ease),
+    background-color var(--theme-fade-duration) var(--theme-fade-ease),
+    box-shadow var(--theme-fade-duration) var(--theme-fade-ease);
+}
+
+section,
+footer,
+#hamburger-nav,
+.experience-card,
+.logo-container,
+.company-logo {
+  transition:
+    background-color var(--theme-fade-duration) var(--theme-fade-ease),
+    background var(--theme-fade-duration) var(--theme-fade-ease),
+    color var(--theme-fade-duration) var(--theme-fade-ease),
+    border-color var(--theme-fade-duration) var(--theme-fade-ease),
+    box-shadow var(--theme-fade-duration) var(--theme-fade-ease);
+}
+
+#profile,
+#about,
+#experience,
+#education {
+  transition:
+    background var(--theme-fade-duration) var(--theme-fade-ease),
+    background-color var(--theme-fade-duration) var(--theme-fade-ease);
 }
 
 /* Hide default cursor on non-touch devices */
@@ -253,7 +313,11 @@ a, .btn {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:
+    transform 0.35s var(--theme-fade-ease),
+    border-color var(--theme-fade-duration) var(--theme-fade-ease),
+    box-shadow var(--theme-fade-duration) var(--theme-fade-ease),
+    background-color var(--theme-fade-duration) var(--theme-fade-ease);
   font-size: 1.5rem;
   position: relative;
   z-index: 1003;
@@ -270,11 +334,43 @@ a, .btn {
 
 .theme-icon {
   display: inline-block;
-  transition: transform 0.3s ease;
+  transition:
+    transform 0.45s var(--theme-fade-ease),
+    opacity 0.35s var(--theme-fade-ease);
 }
 
 .theme-toggle:hover .theme-icon {
   transform: rotate(20deg);
+}
+
+/* Theme icon: brief crossfade when switching light/dark */
+.theme-icon.theme-icon--pulse {
+  animation: themeIconPulse 0.48s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes themeIconPulse {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  40% {
+    opacity: 0.2;
+    transform: scale(0.88) rotate(-14deg);
+  }
+  55% {
+    opacity: 0.2;
+    transform: scale(0.88) rotate(-14deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-icon.theme-icon--pulse {
+    animation: none;
+  }
 }
 
 
@@ -354,9 +450,9 @@ a {
   visibility: hidden;
   pointer-events: none;
   transform: translateY(-100%);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-              visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.58s cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 0.58s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.58s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   overflow: hidden;
   backdrop-filter: blur(0px);
@@ -391,8 +487,8 @@ a {
   list-style: none;
   opacity: 0;
   transform: translateY(-50px);
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s, 
-              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  transition: opacity 0.42s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, 
+              transform 0.42s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
   z-index: 1001;
 }
 
@@ -415,8 +511,8 @@ a {
   text-align: center;
   opacity: 0;
   transform: translateY(-30px);
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-overlay.open .menu-links li {
@@ -426,19 +522,19 @@ a {
 
 /* Staggered entrance animation - items appear one at a time */
 .menu-overlay.open .menu-links li:nth-child(1) {
-  transition-delay: 0.5s;
+  transition-delay: 0.22s;
 }
 
 .menu-overlay.open .menu-links li:nth-child(2) {
-  transition-delay: 0.9s;
+  transition-delay: 0.42s;
 }
 
 .menu-overlay.open .menu-links li:nth-child(3) {
-  transition-delay: 1.3s;
+  transition-delay: 0.62s;
 }
 
 .menu-overlay.open .menu-links li:nth-child(4) {
-  transition-delay: 1.7s;
+  transition-delay: 0.82s;
 }
 
 /* Faster exit animation - items slide up quickly when closing */
@@ -496,14 +592,14 @@ a {
   z-index: 1002;
   opacity: 0;
   transform: translateX(50px);
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.42s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-overlay.open .menu-socials {
   opacity: 1;
   transform: translateX(0);
-  transition-delay: 2.1s;
+  transition-delay: 0.95s;
 }
 
 .menu-icon {

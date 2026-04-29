@@ -37,7 +37,7 @@ class ThemeManager {
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     this.setTheme(newTheme);
     this.saveTheme(newTheme);
-    this.updateIcon(newTheme);
+    this.updateIconWithPulse(newTheme);
   }
 
   /**
@@ -66,6 +66,30 @@ class ThemeManager {
       themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
     }
   }
+
+  /**
+   * Same as updateIcon but with a short crossfade on the emoji (toggle only).
+   */
+  updateIconWithPulse(theme) {
+    pulseThemeIconForTheme(theme);
+  }
+}
+
+/** Brief sun/moon icon transition when theme toggles (not used on initial load). */
+function pulseThemeIconForTheme(theme) {
+  const themeIcon = document.querySelector('.theme-icon');
+  if (!themeIcon) return;
+  themeIcon.classList.remove('theme-icon--pulse');
+  void themeIcon.offsetWidth;
+  themeIcon.classList.add('theme-icon--pulse');
+  window.clearTimeout(themeIcon.__themePulseSwap);
+  window.clearTimeout(themeIcon.__themePulseEnd);
+  themeIcon.__themePulseSwap = window.setTimeout(() => {
+    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }, 190);
+  themeIcon.__themePulseEnd = window.setTimeout(() => {
+    themeIcon.classList.remove('theme-icon--pulse');
+  }, 500);
 }
 
 /**
@@ -219,12 +243,8 @@ window.toggleTheme = function(e) {
   
   html.setAttribute('data-theme', newTheme);
   localStorage.setItem('theme', newTheme);
-  
-  const themeIcon = document.querySelector('.theme-icon');
-  if (themeIcon) {
-    themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-  }
-  
+  pulseThemeIconForTheme(newTheme);
+
   return false;
 };
 

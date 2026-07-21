@@ -79,8 +79,8 @@
           <h1 class = "title scroll-animate">Saleh Yahya</h1>
           
           <div class = "btn-container scroll-animate">
-            <button class = "btn btn-color-2" 
-              onclick = "window.open('./images/resume.pdf')"> 
+            <button class = "btn btn-color-2"
+              onclick = "window.open('./images/resume.pdf')">
               Download CV
             </button>
           </div>
@@ -122,10 +122,16 @@
           />
         </div>
       </div>
+
+      <div class="hero-tabs scroll-animate" role="tablist" aria-label="Portfolio sections">
+        <button class="hero-tab active" data-section="about" role="tab" aria-selected="true" onclick="selectHeroTab('about'); return false;">About Me</button>
+        <button class="hero-tab" data-section="education" role="tab" aria-selected="false" onclick="selectHeroTab('education'); return false;">Education</button>
+        <button class="hero-tab" data-section="experience" role="tab" aria-selected="false" onclick="selectHeroTab('experience'); return false;">Experience</button>
+      </div>
     </section>
 
 <!-------------------------------------------------------------------ABOUT ME SECTION--------------------------------------------------------------------------------------------->
-<section id="about">
+<section id="about" class="content-section active">
   <p class="section_text_p1 scroll-animate">Get To Know</p>
   <h1 class="title scroll-animate">About Me</h1>
   
@@ -148,7 +154,7 @@
 
 <!-------------------------------------------------------------------EXPERIENCE SECTION--------------------------------------------------------------------------------------------->
 
-<section id="experience">
+<section id="experience" class="content-section">
   <p class = "section_text_p1 scroll-animate">Explore My</p>
   <h1 class = "title scroll-animate">Experience</h1>
 
@@ -160,6 +166,22 @@
     </div>
     <div class="experience-right">
       <div class = "experience-details-container">
+
+    <!-- Experience Card 0 - SoKat -->
+    <div class = "experience-card scroll-animate">
+      <div class="logo-container">
+        <img src = "./images/SoKat.jpg" alt="SoKat logo" class="company-logo" loading="lazy" />
+      </div>
+      <div class="experience-content">
+        <h3>AI Researcher Intern @<br class="mobile-break"> <span class="company-name">SoKat</span></h3>
+        <ul class = "experience-points">
+          <li>Details coming soon</li>
+        </ul>
+      </div>
+      <div class="experience-date-wrapper">
+        <p class = "experience-date">Jul 2026 – Dec 2026</p>
+      </div>
+    </div>
 
     <!-- Experience Card 1 - Teaching Assistant -->
     <div class = "experience-card scroll-animate">
@@ -214,7 +236,7 @@
 </section>
 
 <!---------------------------------------------------------------------------------EDUCATION SECTION------------------------------------------------------------------>
-    <section id = "education">
+    <section id = "education" class="content-section">
       <p class = "section_text_p1 scroll-animate">See My</p>
       <h1 class = "title scroll-animate">Education</h1>
 

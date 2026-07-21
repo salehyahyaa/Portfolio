@@ -287,6 +287,22 @@ window.toggleMenu = function(e) {
   return false;
 };
 
+// Hero tab switching - swaps the section shown beneath the hero
+window.selectHeroTab = function(sectionId) {
+  const targetSection = document.getElementById(sectionId);
+  if (!targetSection || !targetSection.classList.contains('content-section')) return;
+
+  document.querySelectorAll('.hero-tab').forEach(tab => {
+    const isActive = tab.getAttribute('data-section') === sectionId;
+    tab.classList.toggle('active', isActive);
+    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('.content-section').forEach(section => {
+    section.classList.toggle('active', section.id === sectionId);
+  });
+};
+
 // Handle menu link clicks - navigate and close menu
 window.handleMenuLink = function(e) {
   const link = e.target.closest('a');
@@ -315,6 +331,13 @@ window.handleMenuLink = function(e) {
     window.scrollTo(0, parseInt(scrollY || '0') * -1);
   }
   
+  // If the link points to a hero-tab section, activate that tab first
+  const sectionId = targetId.slice(1);
+  const targetSection = document.getElementById(sectionId);
+  if (targetSection && targetSection.classList.contains('content-section')) {
+    window.selectHeroTab(sectionId);
+  }
+
   // Navigate to target section with smooth scroll
   setTimeout(() => {
     const targetElement = document.querySelector(targetId);

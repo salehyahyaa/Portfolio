@@ -294,12 +294,20 @@ a, .btn {
   right: 0;
   z-index: 1000;
   transition: all 0.3s ease;
+  /* The bar itself is click-through so it doesn't block content scrolled
+     underneath it; only the logo and controls stay interactive. */
+  pointer-events: none;
+}
+
+#hamburger-nav .logo {
+  pointer-events: auto;
 }
 
 .nav-controls {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  pointer-events: auto;
 }
 
 /* Theme Toggle Button */

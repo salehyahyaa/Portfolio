@@ -29,7 +29,8 @@
     text-align: left;
   }
   
-  #experience {
+  #experience,
+  #publications {
     margin-bottom: 0;
   }
   
@@ -102,6 +103,7 @@
   }
   
   #experience .title,
+  #publications .title,
   #education .title {
     font-size: 3rem;
   }
@@ -115,6 +117,7 @@
   
   #about .title,
   #experience .title,
+  #publications .title,
   #education .title {
     font-size: 2.5rem;
   }
@@ -139,6 +142,7 @@
   
   #about,
   #experience,
+  #publications,
   #education {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -235,18 +239,21 @@
     display: none;
   }
   
-  #experience {
+  #experience,
+  #publications {
     padding: 3.5rem 1rem;
     box-sizing: border-box;
   }
   
-  #experience .title {
+  #experience .title,
+  #publications .title {
     font-size: 2.25rem;
     text-align: left;
     margin-bottom: 1.25rem;
   }
   
-  #experience .section_text_p1 {
+  #experience .section_text_p1,
+  #publications .section_text_p1 {
     text-align: left;
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
@@ -537,6 +544,7 @@
   
   #about .title,
   #experience .title,
+  #publications .title,
   #education .title {
     font-size: 1.75rem;
   }

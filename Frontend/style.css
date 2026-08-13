@@ -119,6 +119,7 @@ footer,
 #profile,
 #about,
 #experience,
+#publications,
 #education {
   transition:
     background var(--theme-fade-duration) var(--theme-fade-ease),
@@ -1382,11 +1383,13 @@ section {
 }
 
 #experience .title,
+#publications .title,
 #education .title {
   text-align: left;
 }
 
 #experience .section_text_p1,
+#publications .section_text_p1,
 #education .section_text_p1 {
   text-align: left;
 }
@@ -1447,6 +1450,95 @@ section {
 }
 
 
+
+/*------------------------------------------------------------- PUBLICATIONS SECTION -------------------------------------------------------*/
+#publications {
+  position: relative;
+  /* Same neutral gradient family as the experience section */
+  background: linear-gradient(135deg,
+    #e8e8e8 0%,
+    #e4e4e4 25%,
+    #e0e0e0 50%,
+    #dcdcdc 75%,
+    #d8d8d8 100%);
+  transition: background 0.3s ease;
+  overflow: hidden;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-top: 4vh;
+}
+
+[data-theme="dark"] #publications {
+  background: linear-gradient(135deg,
+    #000000 0%,
+    #000000 25%,
+    #000000 50%,
+    #000000 75%,
+    #000000 100%);
+}
+
+/* Shorter timeline line — this section holds fewer cards */
+#publications .experience-line {
+  height: 560px;
+  min-height: 560px;
+}
+
+#publications .experience-details-container {
+  margin-top: 4rem;
+}
+
+/* Publication title reads as the card header */
+#publications .experience-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+/* Author byline under a publication title */
+.publication-authors {
+  margin: 0.4rem 0 0 0;
+  line-height: 1.6;
+}
+
+.publication-authors .author-self {
+  font-weight: 700;
+  color: var(--text-tertiary);
+}
+
+.publication-authors sup {
+  font-size: 0.7em;
+  vertical-align: super;
+  line-height: 0;
+  margin-left: 0.1em;
+}
+
+/* Venue • institution • role line */
+.publication-meta {
+  margin-top: 0.25rem;
+}
+
+.meta-dot {
+  color: var(--text-quinary);
+  padding: 0 0.35rem;
+}
+
+.publication-status {
+  color: var(--text-quinary);
+  font-style: italic;
+}
+
+.publication-link {
+  color: var(--text-quaternary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(100, 149, 237, 0.5);
+  padding-bottom: 1px;
+}
+
+.publication-link:hover {
+  color: var(--text-tertiary);
+  border-bottom-color: rgba(100, 149, 237, 0.9);
+}
 
 /*------------------------------------------------------------- EDUCATION SECTION ----------------------------------------------------------------------------------------*/
 
@@ -1806,12 +1898,14 @@ a[href^="#"] {
 /* Section titles animation */
 #about .section_text_p1.scroll-animate,
 #experience .section_text_p1.scroll-animate,
+#publications .section_text_p1.scroll-animate,
 #education .section_text_p1.scroll-animate {
   transition-delay: 0s;
 }
 
 #about .title.scroll-animate,
 #experience .title.scroll-animate,
+#publications .title.scroll-animate,
 #education .title.scroll-animate {
   transition-delay: 0.1s;
 }

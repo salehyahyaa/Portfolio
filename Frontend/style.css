@@ -937,6 +937,117 @@ section {
   gap: 1rem;
 }
 
+/* Hero: larger heading text + social tiles on the right */
+#profile .section_text {
+  max-width: none;
+}
+
+#profile .section_text_p1 {
+  font-size: 1.15rem;
+  letter-spacing: 4px;
+  margin-bottom: 1.25rem;
+}
+
+#profile .title {
+  font-size: clamp(2.6rem, 9vw, 6.5rem);
+  line-height: 1.1;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+#profile #socials-container {
+  flex-shrink: 0;
+  align-items: center;
+  margin-top: 0;
+  gap: 1.5rem;
+}
+
+.social-tile {
+  width: 6.25rem;
+  height: 6.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.75rem;
+  cursor: pointer;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.3));
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+.social-tile:nth-child(2) {
+  margin-top: 3rem;
+}
+
+.social-tile:hover,
+.social-tile:focus-visible {
+  transform: translateY(-8px);
+  border-color: rgba(212, 165, 116, 0.9);
+  box-shadow:
+    0 26px 50px rgba(212, 165, 116, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+#socials-container .social-tile .icon {
+  height: 2.9rem;
+  width: 2.9rem;
+  border-radius: 50%;
+}
+
+#socials-container .social-tile:hover .icon {
+  opacity: 1;
+}
+
+[data-theme="dark"] .social-tile {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .social-tile:hover,
+[data-theme="dark"] .social-tile:focus-visible {
+  border-color: rgba(212, 165, 116, 0.8);
+  box-shadow:
+    0 26px 50px rgba(212, 165, 116, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+@media screen and (max-width: 1200px) {
+  .social-tile:nth-child(2) {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #profile .section_text_p1 {
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+  }
+  #profile #socials-container {
+    gap: 1rem;
+  }
+  .social-tile {
+    width: 4.75rem;
+    height: 4.75rem;
+    border-radius: 1.35rem;
+  }
+  #socials-container .social-tile .icon {
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+}
+
 /*-------------------------------------------------------HERO SECTION TABS-------------------------------------------------------*/
 
 .hero-tabs {

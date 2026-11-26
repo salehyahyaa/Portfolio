@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel = "stylesheet" href="style.css?v=2.2" />
-    <link rel = "stylesheet" href="mediaqueries.css?v=2.2" />
+    <link rel = "stylesheet" href="style.css?v=2.4" />
+    <link rel = "stylesheet" href="mediaqueries.css?v=2.4" />
     <script>
       // Defined inline in <head> so the hero tab onclick handlers work even
       // before script.js (loaded at the end of <body>) has finished downloading.
@@ -96,42 +96,36 @@
         <div class = "section_text">
           <p class = "section_text_p1 scroll-animate">SOFTWARE ENGINEER</p>
           <h1 class = "title scroll-animate">Saleh Yahya</h1>
-          
-          <div id = "socials-container" class="scroll-animate">
-            <span
-              class="email-copy"
-              role="button"
-              tabindex="0"
-              aria-label="Copy email address"
-              onclick="copyEmail(event); return false;"
-            >
-              <img 
-                src = "./images/email.png" 
-                alt="Email"
-                class= "icon"
-              />
-            </span>
+        </div>
+
+        <div id = "socials-container" class="scroll-animate">
+          <span
+            class="email-copy social-tile"
+            role="button"
+            tabindex="0"
+            aria-label="Copy email address"
+            onclick="copyEmail(event); return false;"
+          >
+            <img 
+              src = "./images/email.png" 
+              alt="Email"
+              class= "icon"
+            />
+          </span>
+          <a class="social-tile" href="https://linkedin.com/in/salehyahyaa" aria-label="Linkedin profile">
             <img 
               src = "./images/linkdein.png" 
               alt="Linkedin profile"
               class = "icon" 
-              onclick = "location.href ='https://linkedin.com/in/salehyahyaa'"
             />
+          </a>
+          <a class="social-tile" href="https://github.com/salehyahyaa" aria-label="Github profile">
             <img 
               src = "./images/github.png" 
               alt = "Github profile"
               class = "icon" 
-              onclick= "location.href ='https://github.com/salehyahyaa'"
             />
-          </div>
-        </div>
-
-        <div class = "section__pic-container scroll-animate">
-          <img 
-            src = "./images/profilePic.jpg" 
-            alt = "Saleh Yahya profile picture"
-            class = "profile-pic"
-          />
+          </a>
         </div>
       </div>
 

@@ -1007,6 +1007,13 @@ section {
   opacity: 1;
 }
 
+/* Brand-coloured hero icons: no monochrome filter, no circular clip */
+#socials-container .social-tile .icon.icon-color,
+#socials-container .social-tile .icon.icon-color:hover {
+  filter: none;
+  border-radius: 0;
+}
+
 [data-theme="dark"] .social-tile {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -1255,6 +1262,39 @@ section {
   background-color: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Second, wordmark-style logo sitting beside the round one */
+.logo-container.logo-pill {
+  width: auto;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  top: -15px;
+  left: 54px;
+  background-color: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="dark"] .logo-container.logo-pill {
+  background-color: rgba(255, 255, 255, 0.92);
+}
+
+.partner-logo {
+  height: 13px;
+  width: auto;
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .logo-container.logo-pill {
+    height: 26px;
+    padding: 0 10px;
+    top: -13px;
+    left: 46px;
+  }
+  .partner-logo {
+    height: 11px;
+  }
 }
 
 /* Company logos */
